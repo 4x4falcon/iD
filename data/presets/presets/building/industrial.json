@@ -1,16 +1,15 @@
 {
-    "icon": "industrial",
+    "icon": "industry",
     "fields": [
         "address",
         "levels"
     ],
     "geometry": [
-        "point",
-        "vertex",
         "area"
     ],
     "tags": {
         "building": "industrial"
     },
+    "matchScore": 0.5,
     "name": "Industrial Building"
 }

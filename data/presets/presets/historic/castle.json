@@ -1,7 +1,12 @@
 {
+    "icon": "castle",
+    "fields": [
+        "castle_type",
+        "building_area",
+        "historic/civilization"
+    ],
     "geometry": [
         "point",
-        "vertex",
         "area"
     ],
     "tags": {

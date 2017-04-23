@@ -3,12 +3,22 @@
     "fields": [
         "operator",
         "address",
-        "building_yes"
+        "opening_hours",
+        "fuel_multi"
     ],
     "geometry": [
         "point",
-        "vertex",
         "area"
+    ],
+    "terms": [
+        "petrol",
+        "fuel",
+        "gasoline",
+        "propane",
+        "diesel",
+        "lng",
+        "cng",
+        "biodiesel"
     ],
     "tags": {
         "amenity": "fuel"

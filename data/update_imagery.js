@@ -1,49 +1,68 @@
 var fs = require('fs');
-var sources = require('editor-imagery-index/imagery.json');
+var sources = require('editor-layer-index/imagery.json');
 var imagery = [];
 
-// CENSORSHIP! No, these are just layers that essentially duplicate other layers
-// or which have no clear use case.
-var censor = {
-    "2u": true,
-    "Hike & Bike": true,
-    "OpenCycleMap": true,
-    "OpenStreetMap (German Language)": true,
-    "OpenStreetMap (German Style)": true,
-    "OpenStreetMap (Sorbian Language)": true,
-    "MapQuest OSM": true,
-    "OpenStreetMap (Mapnik Black & White)": true,
-    "Skobbler": true,
+// ignore imagery more than 20 years old..
+var cutoffDate = new Date();
+cutoffDate.setFullYear(cutoffDate.getFullYear() - 20);
 
-    "Stadtplan Z\u00fcrich": true, // https://github.com/osmlab/editor-imagery-index/issues/14
-    "Public Transport (\u00d6PNV)": true // https://github.com/osmlab/editor-imagery-index/issues/15
+var blacklist = {
+    'hike_n_bike': true,                  // 'Hike & Bike'
+    'osm-mapnik-german_style': true,      // 'OpenStreetMap (German Style)'
+    'osm-mapnik-black_and_white': true,   // 'OpenStreetMap (Standard Black & White)'
+    'skobbler': true,                     // 'Skobbler'
+    'openpt_map': true,                   // 'OpenPT Map (overlay)'
+    'tf-cycle': true,                     // 'Thunderforest OpenCycleMap'
+    'qa_no_address': true,                // 'QA No Address'
+
+    'OSM-US-TIGER-Roads_Overlay-2012': true,
+
+    'Waymarked_Trails-Cycling': true,
+    'Waymarked_Trails-Hiking': true,
+    'Waymarked_Trails-MTB': true,
+    'Waymarked_Trails-Skating': true,
+    'Waymarked_Trails-Winter_Sports': true,
+
+    'OSM_Inspector-Addresses': true,
+    'OSM_Inspector-Geometry': true,
+    'OSM_Inspector-Highways': true,
+    'OSM_Inspector-Multipolygon': true,
+    'OSM_Inspector-Places': true,
+    'OSM_Inspector-Routing': true,
+    'OSM_Inspector-Tagging': true
 };
 
-var description = {
-    'MapBox Satellite': 'Satellite and aerial imagery.',
-    'OpenStreetMap (Mapnik)': 'The default OpenStreetMap layer.',
-    'TIGER 2012 Roads Overlay': 'Public domain road data from the US Government.',
-    'Bing aerial imagery': 'Satellite and aerial imagery.',
-    'NAIP': 'National Agriculture Imagery Program'
+var whitelist = [
+    // Add custom sources here if needed.
+];
+
+var descriptions = {
+    'Bing': 'Satellite and aerial imagery.',
+    'Mapbox': 'Satellite and aerial imagery.',
+    'MAPNIK': 'The default OpenStreetMap layer.'
 };
 
-sources.forEach(function(source) {
-    if (source.type !== 'tms' && source.type !== 'bing')
-        return;
-    if (source.name in censor)
-        return;
+sources.concat(whitelist).forEach(function(source) {
+    if (source.type !== 'tms' && source.type !== 'bing') return;
+    if (source.id in blacklist) return;
+
+    if (source.end_date) {
+        var endDate = new Date(source.end_date),
+            isValid = !isNaN(endDate.getTime());
+        if (isValid && endDate <= cutoffDate) return;
+    }
 
     var im = {
+        id: source.id,
         name: source.name,
-        type: source.type
+        type: source.type,
+        template: source.url
     };
 
-    if (description[im.name]) im.description = description[im.name];
-
-    im.template = source.url;
+    var description = source.description || descriptions[im.id];
+    if (description) im.description = description;
 
     var extent = source.extent || {};
-
     if (extent.min_zoom || extent.max_zoom) {
         im.scaleExtent = [
             extent.min_zoom || 0,
@@ -63,6 +82,10 @@ sources.forEach(function(source) {
         ]];
     }
 
+    if (source.id === 'mapbox_locator_overlay') {
+        im.overzoom = false;
+    }
+
     var attribution = source.attribution || {};
     if (attribution.url) {
         im.terms_url = attribution.url;
@@ -70,8 +93,11 @@ sources.forEach(function(source) {
     if (attribution.text) {
         im.terms_text = attribution.text;
     }
+    if (attribution.html) {
+        im.terms_html = attribution.html;
+    }
 
-    ['id', 'default', 'overlay'].forEach(function(a) {
+    ['default', 'overlay', 'best'].forEach(function(a) {
         if (source[a]) {
             im[a] = source[a];
         }
@@ -84,4 +110,4 @@ imagery.sort(function(a, b) {
     return a.name.localeCompare(b.name);
 });
 
-fs.writeFileSync('data/imagery.json', JSON.stringify(imagery, null, 4));
+fs.writeFileSync('data/imagery.json', JSON.stringify({ dataImagery: imagery }, null, 4));

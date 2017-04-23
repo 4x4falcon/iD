@@ -2,12 +2,14 @@
     "icon": "highway-secondary",
     "fields": [
         "oneway",
+        "maxspeed",
         "structure",
         "access",
         "lanes",
-        "maxspeed",
         "surface",
-        "ref"
+        "maxheight",
+        "ref",
+        "cycleway"
     ],
     "geometry": [
         "line"

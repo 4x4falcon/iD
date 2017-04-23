@@ -1,9 +1,9 @@
 {
     "fields": [
-        "building_area",
-        "opening_hours",
         "operator",
-        "phone"
+        "address",
+        "building_area",
+        "opening_hours"
     ],
     "geometry": [
         "point",
@@ -11,8 +11,12 @@
     ],
     "terms": [
         "visitor center",
+        "visitor centre",
         "permit center",
-        "backcountry office"
+        "permit centre",
+        "backcountry office",
+        "warden office",
+        "warden center"
     ],
     "tags": {
         "amenity": "ranger_station"

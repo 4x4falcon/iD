@@ -1,9 +1,13 @@
 {
+    "icon": "toilet",
     "fields": [
         "toilets/disposal",
         "operator",
         "building_area",
-        "access_toilets"
+        "access_toilets",
+        "gender",
+        "fee",
+        "diaper"
     ],
     "geometry": [
         "point",
@@ -25,6 +29,5 @@
     "tags": {
         "amenity": "toilets"
     },
-    "icon": "toilets",
     "name": "Toilets"
 }

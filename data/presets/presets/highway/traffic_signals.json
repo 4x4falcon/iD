@@ -1,10 +1,14 @@
 {
+    "icon": "poi-traffic-signals",
     "geometry": [
         "vertex"
     ],
     "tags": {
         "highway": "traffic_signals"
     },
+    "fields": [
+        "traffic_signals"
+    ],
     "terms": [
         "light",
         "stoplight",

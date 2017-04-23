@@ -1,7 +1,10 @@
 {
     "icon": "basketball",
     "fields": [
-        "surface"
+        "surface",
+        "hoops",
+        "lit",
+        "access_simple"
     ],
     "geometry": [
         "point",

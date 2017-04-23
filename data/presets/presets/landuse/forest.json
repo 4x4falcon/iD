@@ -1,15 +1,18 @@
 {
+    "icon": "park-alt1",
     "fields": [
-        "wood"
+        "leaf_type",
+        "leaf_cycle",
+        "produce"
     ],
-    "icon": "park2",
     "geometry": [
-        "point",
         "area"
     ],
     "tags": {
         "landuse": "forest"
     },
-    "terms": [],
+    "terms": [
+        "tree"
+    ],
     "name": "Forest"
 }

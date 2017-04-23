@@ -3,20 +3,29 @@
 Thinking of contributing to iD? High five! Here are some basics for our habits
 so that you can write code that fits in perfectly.
 
+## Code of Conduct
+
+We want everyone to feel comfortable contributing to iD.  Please read the project
+[Code of Conduct](CODE_OF_CONDUCT.md) and remember to be nice to one another.
+
 ## Reporting Issues
 
 We'd love to hear what you think about iD, about any specific problems or
 concerns you have. Here's a quick list of things to consider:
 
-Please [search for your issue before filing it: many bugs and improvements have already been reported](https://github.com/search?l=&q=repo%3Asystemed%2FiD&type=Issues)
+Please [search for your issue before filing it: many bugs and improvements have already been reported](https://github.com/search?l=&q=repo%3Aopenstreetmap%2FiD&type=Issues)
 
 To report a bug:
 
-* Write specifically what browser (type and version, like Firefox 22), OS, and browser extensions you have installed
-* Write steps to replicate the error: when did it happen? What did you expect to happen? What happened instead?
+* Write specifically what browser (type and version, like "Firefox 49.0"), OS,
+and browser extensions you have installed
+* Write steps to replicate the error: when did it happen? What did you expect to happen?
+What happened instead?
+* We love screenshots.  If you can take a picture of the issue, that is extra helpful.
+You can drag the image file onto the GitHub issue and it will be included with your bug report.
 * Please keep bug reports professional and straightforward: trust us, we share your dismay at software breaking.
-* If you can, [enable web developer extensions](http://macwright.org/enable-web-developer-extensions/) and report the
-  Javascript error message.
+* If you can, [enable web developer extensions](http://debugbrowser.com/) and report the
+JavaScript error message.
 
 When in doubt, be over-descriptive of the bug and how you discovered it.
 
@@ -38,9 +47,9 @@ with stable releases. Issues that are marked fixed in the tracker may still be p
 ## Translating
 
 Translations are managed using the
-[Transifex](https://www.transifex.com/projects/p/id-editor/) platform. After
+[Transifex](https://www.transifex.com/ideditor/id-editor/) platform. After
 signing up, you can go to [iD's project
-page](https://www.transifex.com/projects/p/id-editor/), select a language and
+page](https://www.transifex.com/ideditor/id-editor/), select a language and
 click *Translate now* to start translating. Translations are divided into two
 sections, *core*, which contains text for the main interface of iD, and
 *presets*, which has the text for labeling feature presets.
@@ -56,15 +65,15 @@ search terms literally -- use a set of synonyms and related terms appropriate
 to the target language, separated by commas.
 
 [iD translation project on
-Transifex](https://www.transifex.com/projects/p/id-editor/)
+Transifex](https://www.transifex.com/ideditor/id-editor/)
 
 To get notifications when translation source files change, click **Watch
 project** button near the bottom of the project page. You can edit your
-[notification settings](https://www.transifex.com/settings/notices/) if you're
+[notification settings](https://www.transifex.com/user/settings/notices/) if you're
 getting too many notifications.
 
 Translations are licensed under
-[WTFPL](https://raw.github.com/systemed/iD/master/LICENSE), the same license
+[ISC](https://raw.github.com/openstreetmap/iD/master/LICENSE), the same license
 as iD.
 
 **Why are there so many duplicate "Type" translations?** There are multiple
@@ -90,40 +99,50 @@ to iD, only display them in the interface through the `t()` function.
 Then, add the new string to `data/core.yaml`. The translation system, Transifex,
 will automatically detect the change.
 
-Use `make` to build the translations with the local changes.
-`make translate` can be used to pull the latest translations from Transifex.
+Use `npm run build` to build the translations with the local changes.
+
+`npm run translations` can be used to pull the latest translations from Transifex.
 
 ## Contributing Documentation
 
 Documentation is maintained as a series of [Markdown](http://daringfireball.net/projects/markdown/)
-documents in the `data/doc/` path. The first line of each page of documentation
-should be of the form
+documents in [core.yaml](/data/core.yaml). The documentation
+is in the `help` section (currently starting at line 258). The first line
+of each new section of documentation should be of the form
 
-    # GPS
+```markdown
+# GPS
+```
 
 This will be used for navigation and as its title in iD. Documentation is
 shown in alphabetical order, so most documentation is prefixed with `02-` and
 so on in order to keep it in a certain order.
 
-To add a new page of documentation, simply create a new Markdown file in
-`data/doc` in the same format as the rest.
+To add a new piece of documentation, simply add to [core.yaml](/data/core.yaml) in the same format as the rest.
 
-## Javascript
+## Adding or Refining Presets
 
-We use the [Airbnb style for Javascript](https://github.com/airbnb/javascript) with
+Presets save time for iD users by automatically showing them the tags they are
+likely to add for a given feature. They are stored in `data/presets/presets`. If
+you're going to update the presets, [review the Presets README](/data/presets/README.md).
+
+## JavaScript
+
+We use the [Airbnb style for JavaScript](https://github.com/airbnb/javascript) with
 only one difference:
 
-**4 space soft tabs always for Javascript, not 2.**
+**4 space soft tabs always for JavaScript, not 2.**
 
 No aligned `=`, no aligned arguments, spaces are either indents or the 1
 space between expressions. No hard tabs, ever.
 
-Javascript code should pass through [JSHint](http://www.jshint.com/) with no
-warnings.
+JavaScript code should pass through [ESLint](http://eslint.org/) with no
+warnings. iD uses [ES6 modules](http://exploringjs.com/es6/ch_modules.html) to
+handle connect code together, so we support `import` and `export` constructs.
 
 ## HTML
 
-There isn't much HTML in iD, but what there is is similar to JS: 4 spaces
+There isn't much HTML in iD, but what there is is similar to JavaScript: 4 spaces
 always, indented by the level of the tree:
 
 ```html
@@ -134,7 +153,7 @@ always, indented by the level of the tree:
 
 ## CSS
 
-Just like HTML and Javascript, 4 space soft tabs always.
+Just like HTML and JavaScript, 4 space soft tabs always.
 
 ```css
 .radial-menu-tooltip {
@@ -143,32 +162,28 @@ Just like HTML and Javascript, 4 space soft tabs always.
 ```
 
 We write vanilla CSS with no preprocessing step. Since iD targets modern browsers,
-feel free to use newer features wisely.
+(Chrome, Firefox, Safair, Opera, IE11, and Edge) feel free to use newer features wisely.
 
 ## Tests
 
-Test your code and make sure it passes. Our testing harness requires [node.js](http://nodejs.org/)
-and a few modules:
+Test your code and make sure it passes.
 
-1. [Install node.js](http://nodejs.org/) version 0.10.0 or later - 'Install' will download a package for your OS
-2. Install [PhantomJS](http://phantomjs.org/) version 1.9.1 or later - This can be done via `npm install phantomjs` or homebrew
-3. Go to the directory where you have checked out `iD`
-4. Run `npm install`
-5. Run `npm test` to see whether your tests pass or fail.
+1. Go to the directory where you have checked out `iD`
+2. run `npm install`
+3. run `npm test` to see whether your tests pass or fail.
 
 ## Building / Installing
 
-You can build a concatenated and minified version of iD with the command `make`. Node.js is
-required for this.
+You can rebuild iD completely with the command `npm run all`.
 
 iD will be built to the `dist` directory. This directory is self-contained; you can copy it
 into the public directory of your webserver to deploy iD.
 
 ## Licensing
 
-iD is under the [WTFPL](http://www.wtfpl.net/). Some of the libraries it uses
-are under different licenses. If you're contributing to iD, you're contributing
-WTFPL code.
+iD is available under the [ISC License](https://opensource.org/licenses/ISC).
+Some of the libraries it uses are under different licenses. If you're contributing
+to iD, you're contributing ISC Licensed code.
 
 ## Submitting Changes
 
@@ -179,13 +194,12 @@ In your local copy, make a branch for this change:
 
     git checkout -b make-red
 
-Make your changes to source files. By source files we mean the files in `js/`.
-the `iD.js` and `iD.min.js` files in this project are autogenerated - don't edit
-them.
+Make your changes to source files under `modules/`.
+The `iD.js` and `iD.min.js` files in this project are autogenerated - don't edit them.
 
-So let's say you've changed `js/ui/confirm.js`.
+So let's say you've changed `modules/ui/confirm.js`.
 
-1. Run `jshint js/id` to make sure your code is clean
-2. Run tests with `npm test`
+1. Try it out locally.  Run `npm start` and visit `localhost:8080` in a browser.
+2. Run lint and tests with `npm test`
 3. Commit your changes with an informative commit message
-4. [Submit a pull request](https://help.github.com/articles/using-pull-requests) to the `systemed/iD` project.
+4. [Submit a pull request](https://help.github.com/articles/using-pull-requests) to the `openstreetmap/iD` project.

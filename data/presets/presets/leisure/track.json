@@ -1,7 +1,11 @@
 {
-    "icon": "pitch",
+    "icon": "highway-road",
     "fields": [
-        "surface"
+        "surface",
+        "sport_racing_nonmotor",
+        "lit",
+        "width",
+        "lanes"
     ],
     "geometry": [
         "point",
@@ -11,5 +15,13 @@
     "tags": {
         "leisure": "track"
     },
-    "name": "Race Track"
+    "terms": [
+        "cycle",
+        "dog",
+        "greyhound",
+        "horse",
+        "race*",
+        "track"
+    ],
+    "name": "Racetrack (Non-Motorsport)"
 }

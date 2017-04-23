@@ -3,12 +3,11 @@
         "landuse"
     ],
     "geometry": [
-        "point",
-        "vertex",
         "area"
     ],
     "tags": {
         "landuse": "*"
     },
-    "name": "Landuse"
+    "matchScore": 0.9,
+    "name": "Land Use"
 }

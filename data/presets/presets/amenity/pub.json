@@ -1,17 +1,26 @@
 {
     "icon": "beer",
     "fields": [
+        "address",
         "building_area",
-        "address"
+        "opening_hours",
+        "smoking",
+        "outdoor_seating"
     ],
     "geometry": [
         "point",
-        "vertex",
         "area"
     ],
     "tags": {
         "amenity": "pub"
     },
-    "terms": [],
+    "terms": [
+        "alcohol",
+        "drink",
+        "dive",
+        "beer",
+        "bier",
+        "booze"
+    ],
     "name": "Pub"
 }

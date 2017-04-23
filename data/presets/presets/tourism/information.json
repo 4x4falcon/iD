@@ -1,7 +1,10 @@
 {
+    "icon": "information",
     "fields": [
-        "building_area",
-        "address"
+        "information",
+        "operator",
+        "address",
+        "building_area"
     ],
     "geometry": [
         "point",

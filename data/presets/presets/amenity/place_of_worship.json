@@ -3,12 +3,12 @@
     "fields": [
         "religion",
         "denomination",
+        "address",
         "building_area",
-        "address"
+        "service_times"
     ],
     "geometry": [
         "point",
-        "vertex",
         "area"
     ],
     "terms": [

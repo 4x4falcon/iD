@@ -2,12 +2,16 @@
     "icon": "lodging",
     "fields": [
         "operator",
+        "address",
         "building_area",
-        "address"
+        "smoking",
+        "rooms",
+        "internet_access",
+        "internet_access/fee",
+        "internet_access/ssid"
     ],
     "geometry": [
         "point",
-        "vertex",
         "area"
     ],
     "tags": {

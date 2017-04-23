@@ -1,4 +1,5 @@
 {
+    "icon": "poi-junction",
     "geometry": [
         "vertex"
     ],
@@ -8,5 +9,5 @@
     "fields": [
         "ref"
     ],
-    "name": "Motorway Junction"
+    "name": "Motorway Junction / Exit"
 }

@@ -1,4 +1,8 @@
 {
+    "icon": "barrier",
+    "fields": [
+        "height"
+    ],
     "geometry": [
         "line",
         "area"

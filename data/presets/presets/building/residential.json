@@ -1,16 +1,15 @@
 {
-    "icon": "building",
+    "icon": "residential-community",
     "fields": [
         "address",
         "levels"
     ],
     "geometry": [
-        "point",
-        "vertex",
         "area"
     ],
     "tags": {
         "building": "residential"
     },
+    "matchScore": 0.5,
     "name": "Residential Building"
 }

@@ -2,11 +2,16 @@
     "icon": "lodging",
     "fields": [
         "operator",
-        "address"
+        "address",
+        "building_area",
+        "smoking",
+        "rooms",
+        "internet_access",
+        "internet_access/fee",
+        "internet_access/ssid"
     ],
     "geometry": [
         "point",
-        "vertex",
         "area"
     ],
     "tags": {
@@ -14,7 +19,6 @@
     },
     "terms": [
         "B&B",
-        "Bed & Breakfast",
         "Bed and Breakfast"
     ],
     "name": "Guest House"

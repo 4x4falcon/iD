@@ -1,16 +1,18 @@
 {
+    "icon": "landuse",
     "geometry": "area",
-    "name": "Land Use",
-    "icon": "land-use",
+    "name": "Land Use Features",
     "members": [
         "landuse/residential",
         "landuse/industrial",
         "landuse/commercial",
         "landuse/retail",
-        "landuse/farm",
+        "landuse/farmland",
         "landuse/farmyard",
         "landuse/forest",
         "landuse/meadow",
-        "landuse/cemetery"
+        "landuse/aquaculture",
+        "landuse/cemetery",
+        "landuse/military"
     ]
 }

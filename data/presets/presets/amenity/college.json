@@ -2,15 +2,19 @@
     "icon": "college",
     "fields": [
         "operator",
-        "address"
+        "address",
+        "internet_access",
+        "internet_access/ssid"
     ],
     "geometry": [
         "point",
         "area"
     ],
+    "terms": [
+        "university"
+    ],
     "tags": {
         "amenity": "college"
     },
-    "terms": [],
-    "name": "College"
+    "name": "College Grounds"
 }

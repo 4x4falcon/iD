@@ -2,11 +2,13 @@
     "icon": "highway-trunk",
     "fields": [
         "oneway",
+        "maxspeed",
         "structure",
         "access",
         "lanes",
-        "maxspeed",
         "surface",
+        "maxheight",
+        "toll",
         "ref"
     ],
     "geometry": [

@@ -1,12 +1,17 @@
 {
-    "icon": "park2",
+    "icon": "park-alt1",
+    "fields": [
+        "operator",
+        "trees"
+    ],
     "geometry": [
-        "point",
         "area"
     ],
     "tags": {
         "landuse": "orchard"
     },
-    "terms": [],
+    "terms": [
+        "fruit"
+    ],
     "name": "Orchard"
 }

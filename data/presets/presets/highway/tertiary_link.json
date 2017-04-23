@@ -2,11 +2,14 @@
     "icon": "highway-tertiary-link",
     "fields": [
         "oneway",
+        "maxspeed",
         "structure",
         "access",
-        "maxspeed",
+        "lanes",
         "surface",
-        "ref"
+        "maxheight",
+        "ref",
+        "cycleway"
     ],
     "geometry": [
         "line"
@@ -14,6 +17,10 @@
     "tags": {
         "highway": "tertiary_link"
     },
-    "terms": ["ramp", "on ramp", "off ramp"],
+    "terms": [
+        "ramp",
+        "on ramp",
+        "off ramp"
+    ],
     "name": "Tertiary Link"
 }

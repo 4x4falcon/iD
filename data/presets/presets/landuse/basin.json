@@ -1,6 +1,6 @@
 {
+    "icon": "water",
     "geometry": [
-        "point",
         "area"
     ],
     "tags": {

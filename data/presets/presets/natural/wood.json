@@ -1,8 +1,9 @@
 {
+    "icon": "park-alt1",
     "fields": [
-        "wood"
+        "leaf_type",
+        "leaf_cycle"
     ],
-    "icon": "park2",
     "geometry": [
         "point",
         "area"
@@ -10,6 +11,8 @@
     "tags": {
         "natural": "wood"
     },
-    "terms": [],
+    "terms": [
+        "tree"
+    ],
     "name": "Wood"
 }

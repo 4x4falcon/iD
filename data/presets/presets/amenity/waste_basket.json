@@ -1,17 +1,22 @@
 {
     "icon": "waste-basket",
+    "fields": [
+        "collection_times"
+    ],
     "geometry": [
         "point",
-        "vertex"
+        "vertex",
+        "area"
     ],
     "tags": {
         "amenity": "waste_basket"
     },
     "terms": [
-        "rubbish bin",
-        "litter bin",
-        "trash can",
-        "garbage can"
+        "bin",
+        "garbage",
+        "rubbish",
+        "litter",
+        "trash"
     ],
     "name": "Waste Basket"
 }

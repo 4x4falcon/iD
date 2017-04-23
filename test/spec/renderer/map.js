@@ -1,8 +1,10 @@
 describe('iD.Map', function() {
-    var map;
+    var context, map;
 
     beforeEach(function() {
-        map = iD().map();
+        context = iD.Context();
+        context.container(d3.select(document.createElement('div')));
+        map = context.map();
         d3.select(document.createElement('div'))
             .call(map);
     });
@@ -28,21 +30,33 @@ describe('iD.Map', function() {
             map.zoom(4);
             expect(spy).not.to.have.been.called;
         });
+
+        it('respects minzoom', function() {
+            map.minzoom(16);
+            map.zoom(15);
+            expect(map.zoom()).to.equal(16);
+        });
     });
 
     describe('#zoomIn', function() {
-        it('increments zoom', function() {
+        it('increments zoom', function(done) {
             expect(map.zoom(4)).to.equal(map);
-            expect(map.zoomIn()).to.equal(map);
-            expect(map.zoom()).to.equal(5);
+            map.zoomIn();
+            window.setTimeout(function() {
+                expect(map.zoom()).to.be.closeTo(5, 1e-6);
+                done();
+            }, 300);
         });
     });
 
     describe('#zoomOut', function() {
-        it('decrements zoom', function() {
+        it('decrements zoom', function(done) {
             expect(map.zoom(4)).to.equal(map);
-            expect(map.zoomOut()).to.equal(map);
-            expect(map.zoom()).to.equal(3);
+            map.zoomOut();
+            window.setTimeout(function() {
+                expect(map.zoom()).to.be.closeTo(3, 1e-6);
+                done();
+            }, 300);
         });
     });
 
@@ -57,8 +71,8 @@ describe('iD.Map', function() {
             expect(map.center([0, 0])).to.equal(map);
             expect(map.center()).to.eql([0, 0]);
             expect(map.center([10, 15])).to.equal(map);
-            expect(map.center()[0]).to.be.closeTo(10, 0.5);
-            expect(map.center()[1]).to.be.closeTo(15, 0.5);
+            expect(map.center()[0]).to.be.closeTo(10, 1e-6);
+            expect(map.center()[1]).to.be.closeTo(15, 1e-6);
         });
 
         it('dispatches move event when center changes', function() {
@@ -83,8 +97,8 @@ describe('iD.Map', function() {
             expect(map.center([10, 10])).to.equal(map);
             expect(map.centerEase([20, 20])).to.equal(map);
             window.setTimeout(function() {
-                expect(map.center()[0]).to.be.closeTo(20, 0.5);
-                expect(map.center()[1]).to.be.closeTo(20, 0.5);
+                expect(map.center()[0]).to.be.closeTo(20, 1e-6);
+                expect(map.center()[1]).to.be.closeTo(20, 1e-6);
                 done();
             }, 1000);
         });
@@ -93,8 +107,8 @@ describe('iD.Map', function() {
     describe('#centerZoom', function() {
         it('gets and sets center and zoom', function() {
             expect(map.centerZoom([20, 25], 4)).to.equal(map);
-            expect(map.center()[0]).to.be.closeTo(20, 0.5);
-            expect(map.center()[1]).to.be.closeTo(25, 0.5);
+            expect(map.center()[0]).to.be.closeTo(20, 1e-6);
+            expect(map.center()[1]).to.be.closeTo(25, 1e-6);
             expect(map.zoom()).to.be.equal(4);
         });
     });
@@ -115,9 +129,9 @@ describe('iD.Map', function() {
         });
     });
 
-    describe("surface", function() {
-        it("is an SVG element", function() {
-           expect(map.surface.node().tagName).to.equal("svg");
+    describe('surface', function() {
+        it('is an SVG element', function() {
+           expect(map.surface.node().tagName).to.equal('svg');
         });
     });
 

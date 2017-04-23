@@ -2,7 +2,9 @@
     "icon": "post",
     "fields": [
         "operator",
-        "collection_times"
+        "collection_times",
+        "drive_through",
+        "ref"
     ],
     "geometry": [
         "point",
@@ -12,12 +14,8 @@
         "amenity": "post_box"
     },
     "terms": [
-        "letter drop",
-        "letterbox",
-        "mail drop",
-        "mailbox",
-        "pillar box",
-        "postbox"
+        "letter",
+        "post"
     ],
     "name": "Mailbox"
 }
